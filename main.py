@@ -10,19 +10,21 @@ class Test(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('UI.ui', self)
+
         self.pix = QPixmap(600, 600)
         self.label.setPixmap(self.pix)
         self.btn.clicked.connect(self.draw_circle)
+        self.n = 0
 
     def draw_circle(self):
         x, y = [randint(10, 500) for i in range(2)]
-        w, h = [randint(10, 100) for i in range(2)]
+        w = randint(10, 100)
         painter = QPainter(self.label.pixmap())
         pen = QPen()
         pen.setWidth(3)
         pen.setColor(QColor("yellow"))
         painter.setPen(pen)
-        painter.drawEllipse(x, y, w, h)
+        painter.drawEllipse(x, y, w, w)
         painter.end()
         self.update()
 
